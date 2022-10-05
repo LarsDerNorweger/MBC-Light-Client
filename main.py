@@ -1,12 +1,14 @@
 import time
-from Serial.SerialManager import SerialManager
+#from Serial.SerialManager import SerialManager
 import sys
 
 
 
 from tkinter import Tk
-from UI.MainWindow.master import MainWindow 
+from UI.translation import setLanguage
+setLanguage('de','./de.json')
 
+from UI.MainWindow.master import MainWindow 
 
 master = Tk()
 MainWindow(master).pack()
