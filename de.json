@@ -1,5 +1,8 @@
 {
     "add Group":"Gruppe Hinzufügen",
     "enable pin": "Pin aktivieren",
-    "disable pin": "Pin deaktivieren"
+    "disable pin": "Pin deaktivieren",
+    "choose pin!": "Pin auswählen",
+    "clear selection":"Auswahl aufheben",
+    "An error occured":"Es trat ein Fehler auf"
 }
