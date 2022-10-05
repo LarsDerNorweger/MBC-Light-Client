@@ -1,0 +1,7 @@
+# MainWindow
+
+The Window allows the Input for the Programming of the Arduino
+
+#TODO
+
+- Put the Window to the own Thread
