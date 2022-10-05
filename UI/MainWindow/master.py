@@ -5,20 +5,33 @@
 #
 
 from tkinter import *
+from tkinter import messagebox
 from  UI.MainWindow.ArduinoInterface import ArduinoInterface
 from  UI.MainWindow.tools import Tools
+from UI.translation import setLanguage,__
 
 class MainWindow(Frame):
   def __init__(self,parent):
     super().__init__(parent)
     self.createUI()
+    self.master = parent
     
+
 
   def createUI(self):
-    
-    self.Arduino = ArduinoInterface(self, '../Settings/leonardo.json')
-    self.Arduino.pack()
+    try:    
+      setLanguage('de','./de.json')
 
-    self.Tools = Tools(self)
-    self.Tools.pack()
+      self.Arduino = ArduinoInterface(self, './UI/Settings/leonardo.json')
+      self.Arduino.pack()
+
+      self.Tools = Tools(self)
+      self.Tools.pack()
+      self.Tools.onPinDisable = lambda: self.Arduino.markPins(self.Arduino.getSelectedPins(),"red")
+      self.Tools.onClear = lambda:self.Arduino.unselectAll()
+      self.pack()
+    except Exception as e:
+      messagebox.showerror(__("An error occured"),e)
+      self.master.destroy()
+      
 
