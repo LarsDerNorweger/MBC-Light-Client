@@ -5,13 +5,11 @@ import sys
 
 
 from tkinter import Tk
-from UI.translation import setLanguage
-setLanguage('de','./de.json')
 
 from UI.MainWindow.master import MainWindow 
 
 master = Tk()
-MainWindow(master).pack()
+MainWindow(master)
 master.mainloop()
 
 # def convertMessage(msg:str):
