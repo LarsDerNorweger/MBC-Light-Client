@@ -1,3 +1,9 @@
+#
+#   MBC Zwickau Light Client
+#
+#   Authors: Colin Böttger 
+#
+
 import threading
 import time
 import serial
