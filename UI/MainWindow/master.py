@@ -31,7 +31,6 @@ class MainWindow(Frame):
  
 
   def createUI(self):
-    try:    
       setLanguage('de','./de.json')
 
       self.Arduino = grid(ArduinoInterface(self, './UI/Settings/leonardo.json'),2,1,rowspan=2)
@@ -48,12 +47,10 @@ class MainWindow(Frame):
       self.GroupSettings.group = self.Groups.selected_group
 
       self.ProfileManager = grid(SaveProfileInterface(self),3,3,sticky=S)
-
+      self.ProfileManager.on_save = lambda:self.Groups.groups
 
       self.pack()
-    except Exception as e:
-      messagebox.showerror(__("An error occured"),e)
-      self.master.destroy()
+ 
       
   def __select_All(self):
     self.Arduino.toggle_all(True)
