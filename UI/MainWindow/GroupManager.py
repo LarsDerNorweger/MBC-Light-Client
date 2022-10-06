@@ -1,11 +1,7 @@
 #
-
 #   MBC Zwickau Light Client
-
 #
-
 #   Authors: Colin Böttger 
-
 #
 
 
@@ -19,6 +15,7 @@ class Group:
   Pins = []
   btn:Radiobutton
   color:str
+  delay:int = None
 
 class GroupsInterface(Frame):
 
@@ -28,6 +25,11 @@ class GroupsInterface(Frame):
   @on_click.setter
   def on_click(self,value):
       self.__on_click = value
+
+  @property
+  def selected_group(self)-> Group:
+    return self.groups[self.ed.get()]
+
 
   def __init__(self,master,GroupCount):
     super().__init__(master)
@@ -44,7 +46,6 @@ class GroupsInterface(Frame):
     pass
 
   def __generateGroup(self,GroupCount):
-
     for i in range(GroupCount):
       col = next(self.colors)
       grp = Group()
@@ -55,8 +56,13 @@ class GroupsInterface(Frame):
       pass
     pass
 
-  def get_selected_group(self)->Group:
-    return self.groups[self.ed.get()]
+
+  def update(self) -> None:
+    for i in self.groups:
+      i.btn.config(text=i.name)
+      
+    return super().update()
+
 
 
 
