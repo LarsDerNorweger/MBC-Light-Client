@@ -1,16 +1,20 @@
 import time
 #from Serial.SerialManager import SerialManager
-import sys
 
 
 
-from tkinter import Tk
+from tkinter import Tk, messagebox
 
 from UI.MainWindow.master import MainWindow 
+from UI.translation import __
 
-master = Tk()
-MainWindow(master)
-master.mainloop()
+try:
+    master = Tk()
+    MainWindow(master)
+    master.mainloop()
+except Exception as e:
+    messagebox.showerror(__("An error occured"),e)
+    master.destroy()
 
 # def convertMessage(msg:str):
 #   return int(msg[0:len(msg)-2])
