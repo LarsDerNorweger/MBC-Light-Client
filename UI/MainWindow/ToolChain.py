@@ -20,30 +20,30 @@ class Tools(Frame):
         self.__onEnable = value
 
     @property    
-    def onPinDisable(self)->None:
+    def on_select_all(self)->None:
         return None
-    @onPinDisable.setter
-    def onPinDisable(self,value):
-        self.__onDisable = value
+    @on_select_all.setter
+    def on_select_all(self,value):
+        self.__on_select_all = value
 
     @property    
-    def onClear(self)->None:
+    def on_delete_from_group(self)->None:
         return None
-    @onClear.setter
-    def onClear(self,value):
-        self.__onClear = value
+    @on_delete_from_group.setter
+    def on_delete_from_group(self,value):
+        self.__on_delete_from_group = value
 
     def __init__(self,parent):
         super().__init__(parent)
         self.__onEnable = None
-        self.__onDisable = None
-        self.__onClear = None
+        self.__on_select_all = None
+        self.__on_delete_from_group = None
         self.createUI()    
 
     def createUI(self):
         packSide(Button(self,text = __("enable pin"),command=self.__handleEnable))
-        packSide(Button(self,text = __("disable pin"),command=self.__handleDisable))
-        packSide(Button(self,text = __("clear selection"),command=self.__handleClear))
+        packSide(Button(self,text = __("select all"),command=self.__handleDisable))
+        packSide(Button(self,text = __("delete from group"),command=self.__handleClear))
 
     def __handleEnable(self):
         if callable(self.__onEnable):
@@ -51,13 +51,13 @@ class Tools(Frame):
         pass
 
     def __handleDisable(self):
-        if callable(self.__onDisable):
-            self.__onDisable()
+        if callable(self.__on_select_all):
+            self.__on_select_all()
         pass
 
     def __handleClear(self):
-        if callable(self.__onClear):
-            self.__onClear()
+        if callable(self.__on_delete_from_group):
+            self.__on_delete_from_group()
         pass
 
 
