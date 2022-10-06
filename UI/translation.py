@@ -11,7 +11,7 @@ class Language:
     lang = 'en'
     langDic = {}
 
-def setLanguage(language:str,path:str= None):
+def setLanguage(language:str,path:str= None)->None:
     if(language == 'en'):
         Language.lang == 'en'
         return
@@ -29,7 +29,7 @@ def setLanguage(language:str,path:str= None):
         Language.lang = 'en'
         messagebox.showerror("Language Error", f"The programm cant read the language Profile, the standart language is choosen")
 
-def __(key:str):
+def __(key:str)->str:
     if(Language.lang == 'en'):
         return key
 
