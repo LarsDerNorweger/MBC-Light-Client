@@ -4,18 +4,19 @@
 #   Authors: Colin Böttger 
 #
 
-from tkinter import Widget
+from typing import TypeVar
 
-def packDown(elem:Widget)->Widget:
+T = TypeVar('T')
+def packDown(elem:T)->T:
     elem.pack()
     return elem
 
-def packSide(elem:Widget)->Widget:
+def packSide(elem:T)->T:
     elem.pack(side = "left")
     return elem
 
-def grid(elem:Widget,x:int,y:int,columnspan = 1) ->Widget:
-  elem.grid(row = x, column = y,columnspan= columnspan)
+def grid(elem:T,x:int,y:int,columnspan = 1,rowspan=1,sticky = 'n') ->T:
+  elem.grid(row = x, column = y,columnspan= columnspan,rowspan = rowspan,sticky=sticky)
   return elem
 
 
