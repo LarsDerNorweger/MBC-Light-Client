@@ -1,9 +1,12 @@
 {
     "add Group":"Gruppe Hinzufügen",
     "enable pin": "Pin aktivieren",
-    "disable pin": "Pin deaktivieren",
+    "select all": "Alle auswaehlen",
     "choose pin!": "Pin auswählen",
-    "clear selection":"Auswahl aufheben",
+    "delete from group":"von Gruppe entfernen",
     "An error occured":"Es trat ein Fehler auf",
-    "group":"Gruppe"
+    "group":"Gruppe",
+    "delay in sek":"Umschaltzeit in Sekunden",
+    "name":"Name",
+    "Group settings":"Einstellung der Gruppe"
 }
