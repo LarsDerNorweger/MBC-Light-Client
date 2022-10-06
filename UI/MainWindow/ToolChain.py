@@ -9,6 +9,7 @@ from signal import raise_signal
 from tkinter import *
 from  UI.translation import __
 from UI.UiHelper import packSide
+from UI.ArduinoDesigner.master import ArduinoDesigner
 
 class Tools(Frame):
 
@@ -41,9 +42,16 @@ class Tools(Frame):
         self.createUI()    
 
     def createUI(self):
-        packSide(Button(self,text = __("enable pin"),command=self.__handleEnable))
+        packSide(Button(self,text = __("settings"),command=self.__handleEnable))
         packSide(Button(self,text = __("select all"),command=self.__handleDisable))
         packSide(Button(self,text = __("delete from group"),command=self.__handleClear))
+        packSide(Button(self,text = __("create Arduino"),command=self.__open_arduino_designer))
+
+    def __open_arduino_designer(self):
+        tk = Tk()
+        ArduinoDesigner(tk)
+        tk.mainloop()
+        pass
 
     def __handleEnable(self):
         if callable(self.__onEnable):

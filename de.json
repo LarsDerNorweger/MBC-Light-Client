@@ -10,5 +10,7 @@
     "name":"Name",
     "Group settings":"Einstellung der Gruppe",
     "failed to load file":"Fehler beim öffen der Datei",
-    "failed to parse file":"Die Datei ist beschädigt"
+    "failed to parse file":"Die Datei ist beschädigt",
+    "settings":"Einstellung",
+    "create Arduino":"Arduino erstellen"
 }
