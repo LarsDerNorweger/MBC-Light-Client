@@ -10,17 +10,31 @@ from UI.translation import __, convertStringArrayToString
 import json
 
 class ArduinoInterface(Frame):
+
+  @property    
+  def onClick(self)->None:
+      return None
+  @onClick.setter
+  def onClick(self,value):
+      self.__onClick = value
+
   def __init__(self,parent:Frame,path:str):
     super().__init__(parent)
     self.Pins:List[PIN] = []
     self.loadArduino(path)
     self.createArduino()
+    self.__onClick = None
+    pass
+
+  def __handleClick(self):
+    if callable(self.__onClick):
+      self.__onClick()
     pass
 
   def createArduino(self):
     for i,pin in enumerate(self.Pins):
       c = int(i%2)
-      cb = Checkbutton(self,text = f'PIN {pin.pinNumber}',variable=pin.var)
+      cb = Checkbutton(self,text = f'PIN {pin.pinNumber}',variable=pin.var, command=lambda:self.__handleClick())
       cb.grid(column=c,row= int((i-c)/2),sticky=W)
       pin.cb = cb
       pass
