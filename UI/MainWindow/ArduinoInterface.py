@@ -20,6 +20,9 @@ class ArduinoInterface(Frame):
   def on_click(self,value):
       self.__onClick = value
 
+  @property
+  def name(self):
+    return self.__name
 
   @property
   def selected_pins(self):
@@ -53,11 +56,12 @@ class ArduinoInterface(Frame):
   def __load_arduino(self,path:str):
     try:
       with open(path) as fs:
-          res = json.loads(" ".join(fs.readlines()))["pins"]
-          for i in res:
+          res = json.loads(" ".join(fs.readlines()))
+          for i in res["pins"]:
             p = PIN(i)
             p.var = BooleanVar()
             self.Pins.append(p)
+          self.__name = res["type"]
       pass
     except EOFError:
       messagebox.showerror("Load Failed","Unable to Load Arduino Profile")
@@ -82,6 +86,9 @@ class ArduinoInterface(Frame):
       if pin.pinNumber in pins:
         pin.cb.config(bg = self.cget('bg'))
     pass
+
+  __name:str
+
   
 class PIN:
   pinNumber:int
