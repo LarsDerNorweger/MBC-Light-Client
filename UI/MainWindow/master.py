@@ -8,7 +8,7 @@ from tkinter import *
 from tkinter import messagebox
 
 from  UI.MainWindow.ArduinoInterface import ArduinoInterface
-from  UI.MainWindow.GroupManager import GroupsInterface
+from  UI.MainWindow.GroupManager import Group, GroupsInterface
 from UI.MainWindow.SaveInterface import SaveProfileInterface
 from  UI.MainWindow.ToolChain import Tools
 from UI.MainWindow.GroupSettingsInterface import GroupSettingsInterface
@@ -47,14 +47,31 @@ class MainWindow(Frame):
       self.GroupSettings.group = self.Groups.selected_group
 
       self.ProfileManager = grid(SaveProfileInterface(self),3,3,sticky=S)
-      self.ProfileManager.on_save = lambda:self.Groups.groups
+      self.ProfileManager.on_save = lambda:{'groups':self.Groups.groups, 'type':self.Arduino.name}
+      self.ProfileManager.on_load = self.__load_Profile
 
       self.pack()
  
-      
+  def __load_Profile(self,res):
+    if self.Arduino.name != res['type']:
+      messagebox.showerror(__("An error occured"),__("The profile requires an Arduino from the type")+' '+res['type'])
+      return
+    grp = res['groups']
+    self.Arduino.toggle_all(True)
+    self.__unmark_pins()
+    self.Arduino.toggle_all(False)
+    self.Groups.reset_groups()
+    for i in grp:
+      p = i["pins"]
+      grp =self.Groups.add_and_create_group(i["name"],i["delay"],p)
+      self.Arduino.mark_pins(p,grp.color)
+    pass
+
+
   def __select_All(self):
     self.Arduino.toggle_all(True)
     self.__add_pins_to_group()
+    self.__update_state()
     pass
 
   def __change_group(self):
@@ -68,6 +85,7 @@ class MainWindow(Frame):
     group = self.Groups.selected_group
     group.Pins = group.Pins+list(set(pins)-set(group.Pins))
     self.Arduino.mark_pins(pins,group.color)
+    self.__update_state()
     pass
 
   def __unmark_pins(self):
@@ -76,6 +94,10 @@ class MainWindow(Frame):
     group.Pins = list(set(group.Pins)-set(pins))
     self.Arduino.unmark_pins(pins)
     self.Arduino.toggle_all(False)
+    self.__update_state()
     pass
 
-
+  def __update_state(self):
+    self.GroupSettings.group = self.Groups.selected_group
+    self.Groups.update()
+    pass

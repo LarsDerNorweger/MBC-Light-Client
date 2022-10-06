@@ -19,11 +19,10 @@ class Group:
 
   @property 
   def __dict__(self):
-    return {"name":self.name,"pins":self.Pins, "delay":self.delay}
+    return {"name":self.name,"pins":self.Pins, "delay":str(self.delay).replace(',','.')}
 
 
 class GroupsInterface(Frame):
-
   @property    
   def on_click(self)->None:
       return None
@@ -39,8 +38,8 @@ class GroupsInterface(Frame):
   def __init__(self,master,GroupCount):
     super().__init__(master)
     self.__on_click = None
-    self.groups = []
-    self.colors = WebsaveColorGenerator(102)
+    self.groups:List[Group] = []
+    self.reset_groups()
     self.ed = IntVar()
     self.__generateGroup(GroupCount)
 
@@ -52,15 +51,27 @@ class GroupsInterface(Frame):
 
   def __generateGroup(self,GroupCount):
     for i in range(GroupCount):
-      col = next(self.colors)
-      grp = Group()
-      grp.name = __("group")+" "+str(i)
-      grp.btn = packDown(Radiobutton(self,text = grp.name ,bg = col,variable=self.ed ,value=i,command=self.__handle_click))
-      grp.color = col
-      self.groups.append(grp)
+      self.add_and_create_group(str(__("group")+' '+str(i)),0)
       pass
     pass
 
+  def reset_groups(self):
+    for grp in self.groups:      
+      grp.btn.destroy()
+
+    self.groups = []
+    self.colors = WebsaveColorGenerator(102)
+    pass
+
+  def add_and_create_group(self,name:str,delay:int,pins = [])->Group:
+    grp = Group()
+    grp.name = name
+    grp.delay = delay if delay==None else 0
+    grp.color = next(self.colors)
+    grp.Pins = pins
+    grp.btn = packDown(Radiobutton(self,text = grp.name ,bg = grp.color,variable=self.ed ,value=len(self.groups),command=self.__handle_click))
+    self.groups.append(grp)
+    return grp
 
   def update(self) -> None:
     for i in self.groups:

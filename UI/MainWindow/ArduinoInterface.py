@@ -7,6 +7,7 @@
 from tkinter import *
 from tkinter import messagebox
 from typing import List
+from UI.MainWindow.GroupManager import Group
 from UI.translation import __
 from UI.UiHelper import grid
 import json
@@ -67,8 +68,6 @@ class ArduinoInterface(Frame):
       messagebox.showerror("Load Failed","Unable to Load Arduino Profile")
       pass
     pass
-
-
 
   def toggle_all(self,force= None):
     for pin in self.Pins:
