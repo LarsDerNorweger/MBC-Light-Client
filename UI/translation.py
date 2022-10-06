@@ -24,17 +24,10 @@ def setLanguage(language:str,path:str= None):
 
         with open(path) as fs:
             res = fs.readlines()
-            Language.langDic = json.loads(convertStringArrayToString(res))
+            Language.langDic = json.loads(" ".join(res))
     except:
         Language.lang = 'en'
         messagebox.showerror("Language Error", f"The programm cant read the language Profile, the standart language is choosen")
-        
-
-def convertStringArrayToString(arr):
-    res = ''
-    for i in arr:
-        res+=i
-    return res
 
 def __(key:str):
     if(Language.lang == 'en'):
