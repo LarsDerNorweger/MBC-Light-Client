@@ -14,8 +14,8 @@ def packSide(elem:Widget)->Widget:
     elem.pack(side = "left")
     return elem
 
-def grid(elem:Widget,x:int,y:int) ->Widget:
-  elem.grid(row = x, column = y)
+def grid(elem:Widget,x:int,y:int,columnspan = 1) ->Widget:
+  elem.grid(row = x, column = y,columnspan= columnspan)
   return elem
 
 
