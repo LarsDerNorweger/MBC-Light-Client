@@ -8,6 +8,7 @@ from tkinter import *
 from tkinter import messagebox
 from typing import List
 from UI.translation import __
+from UI.UiHelper import grid
 import json
 
 class ArduinoInterface(Frame):
@@ -18,6 +19,15 @@ class ArduinoInterface(Frame):
   @on_click.setter
   def on_click(self,value):
       self.__onClick = value
+
+
+  @property
+  def selected_pins(self):
+    res = []
+    for pin in self.Pins:
+      if pin.var.get() == True:
+        res.append(pin.pinNumber)
+    return res
 
   def __init__(self,parent:Frame,path:str):
     super().__init__(parent)
@@ -36,8 +46,7 @@ class ArduinoInterface(Frame):
     for i,pin in enumerate(self.Pins):
       c = int(i%2)
       cb = Checkbutton(self,text = f'PIN {pin.pinNumber}',variable=pin.var, command=lambda:self.__handle_click())
-      cb.grid(column=c,row= int((i-c)/2),sticky=W)
-      pin.cb = cb
+      pin.cb = grid(cb,int((i-c)/2),c,sticky=W)
       pass
     pass
 
@@ -55,16 +64,11 @@ class ArduinoInterface(Frame):
       pass
     pass
 
-  def get_selected_pins(self):
-    res = []
-    for pin in self.Pins:
-      if pin.var.get() == True:
-        res.append(pin.pinNumber)
-    return res
 
-  def unselect_all(self):
+
+  def toggle_all(self,force= None):
     for pin in self.Pins:
-      pin.var.set(False)
+      pin.var.set(force if force != None else not pin.var.get())
     pass
 
   def mark_pins(self,pins,color:str):
@@ -76,7 +80,7 @@ class ArduinoInterface(Frame):
   def unmark_pins(self,pins):
     for pin in self.Pins:
       if pin.pinNumber in pins:
-        pin.cb.config(bg = "white")
+        pin.cb.config(bg = self.cget('bg'))
     pass
   
 class PIN:
