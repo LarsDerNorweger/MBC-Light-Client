@@ -4,5 +4,6 @@
     "disable pin": "Pin deaktivieren",
     "choose pin!": "Pin auswählen",
     "clear selection":"Auswahl aufheben",
-    "An error occured":"Es trat ein Fehler auf"
+    "An error occured":"Es trat ein Fehler auf",
+    "group":"Gruppe"
 }

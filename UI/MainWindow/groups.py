@@ -12,6 +12,7 @@
 from tkinter import *
 
 from UI.UiHelper import WebsaveColorGenerator,packDown
+from UI.translation import __
 
 class Group:
   name:str
@@ -47,7 +48,7 @@ class GroupsInterface(Frame):
     for i in range(GroupCount):
       col = next(self.colors)
       grp = Group()
-      grp.btn = packDown(Radiobutton(self,text = f"Group {i}",bg = col,variable=self.ed ,value=i,command=self.__handle_click))
+      grp.btn = packDown(Radiobutton(self,text = __("group")+" "+str(i),bg = col,variable=self.ed ,value=i,command=self.__handle_click))
       grp.color = col
       self.groups.append(grp)
       pass
