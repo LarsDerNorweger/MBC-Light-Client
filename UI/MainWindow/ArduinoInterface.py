@@ -5,8 +5,9 @@
 #
 
 from tkinter import *
+from tkinter import messagebox
 from typing import List
-from UI.translation import __, convertStringArrayToString
+from UI.translation import __
 import json
 
 class ArduinoInterface(Frame):
@@ -41,13 +42,17 @@ class ArduinoInterface(Frame):
     pass
 
   def loadArduino(self,path:str):
-    with open(path) as fs:
-        i = fs.readlines()
-        res = json.loads(convertStringArrayToString(i))["pins"]
-        for i in res:
-          p = PIN(i)
-          p.var = BooleanVar()
-          self.Pins.append(p)
+    try:
+      with open(path) as fs:
+          res = json.loads(" ".join(fs.readlines()))["pins"]
+          for i in res:
+            p = PIN(i)
+            p.var = BooleanVar()
+            self.Pins.append(p)
+      pass
+    except EOFError:
+      messagebox.showerror("Load Failed","Unable to Load Arduino Profile")
+      pass
     pass
 
   def getSelectedPins(self):

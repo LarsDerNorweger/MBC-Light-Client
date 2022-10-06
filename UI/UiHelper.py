@@ -4,13 +4,19 @@
 #   Authors: Colin Böttger 
 #
 
-def packDown(elem):
+from tkinter import Widget
+
+def packDown(elem:Widget)->Widget:
     elem.pack()
     return elem
 
-def packSide(elem):
+def packSide(elem:Widget)->Widget:
     elem.pack(side = "left")
     return elem
+
+def grid(elem:Widget,x:int,y:int) ->Widget:
+  elem.grid(row = x, column = y)
+  return elem
 
 
 def WebsaveColorGenerator(startvalue = 0):
@@ -24,7 +30,7 @@ def WebsaveColorGenerator(startvalue = 0):
       while r<255:
         r+=51
         yield _from_rgb((r,g,b))
-      r = startvalue;
+      r = startvalue
       g+=51
       yield _from_rgb((r,g,b))
     g =startvalue
