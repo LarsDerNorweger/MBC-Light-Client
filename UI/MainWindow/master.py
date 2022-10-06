@@ -9,6 +9,7 @@ from tkinter import messagebox
 
 from  UI.MainWindow.ArduinoInterface import ArduinoInterface
 from  UI.MainWindow.GroupManager import GroupsInterface
+from UI.MainWindow.SaveInterface import SaveProfileInterface
 from  UI.MainWindow.ToolChain import Tools
 from UI.MainWindow.GroupSettingsInterface import GroupSettingsInterface
 
@@ -19,19 +20,21 @@ class MainWindow(Frame):
   Arduino:ArduinoInterface
   Groups:GroupsInterface
   GroupSettings:GroupSettingsInterface
+  ProfileManager:SaveProfileInterface
 
   def __init__(self,parent):
     super().__init__(parent)
     self.createUI()
     self.master = parent
+    self.master.title("MBC Lux")
     
-
+ 
 
   def createUI(self):
     try:    
       setLanguage('de','./de.json')
 
-      self.Arduino = grid(ArduinoInterface(self, './UI/Settings/leonardo.json'),2,1)
+      self.Arduino = grid(ArduinoInterface(self, './UI/Settings/leonardo.json'),2,1,rowspan=2)
       self.Arduino.on_click = self.__add_pins_to_group
 
       self.Tools = grid(Tools(self),1,1,3)
@@ -43,6 +46,9 @@ class MainWindow(Frame):
 
       self.GroupSettings = grid(GroupSettingsInterface(self),2,3)
       self.GroupSettings.group = self.Groups.selected_group
+
+      self.ProfileManager = grid(SaveProfileInterface(self),3,3,sticky=S)
+
 
       self.pack()
     except Exception as e:
@@ -74,4 +80,5 @@ class MainWindow(Frame):
     self.Arduino.unmark_pins(pins)
     self.Arduino.toggle_all(False)
     pass
+
 
