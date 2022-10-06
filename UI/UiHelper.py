@@ -8,11 +8,11 @@ from typing import TypeVar
 
 T = TypeVar('T')
 def packDown(elem:T)->T:
-    elem.pack()
+    elem.pack(pady=1)
     return elem
 
 def packSide(elem:T)->T:
-    elem.pack(side = "left")
+    elem.pack(side = "left",padx=4)
     return elem
 
 def grid(elem:T,x:int,y:int,columnspan = 1,rowspan=1,sticky = 'n') ->T:
