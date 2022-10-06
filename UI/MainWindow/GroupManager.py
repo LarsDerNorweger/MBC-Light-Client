@@ -17,6 +17,11 @@ class Group:
   color:str
   delay:int = None
 
+  @property 
+  def __dict__(self):
+    return {"name":self.name,"pins":self.Pins, "delay":self.delay}
+
+
 class GroupsInterface(Frame):
 
   @property    
