@@ -34,12 +34,13 @@ class Tools(Frame):
     def on_delete_from_group(self,value):
         self.__on_delete_from_group = value
 
-    def __init__(self,parent):
-        super().__init__(parent)
+    def __init__(self,parent_widget):
+        super().__init__(parent_widget)
         self.__onEnable = None
         self.__on_select_all = None
         self.__on_delete_from_group = None
-        self.createUI()    
+        self.createUI()  
+         
 
     def createUI(self):
         packSide(Button(self,text = __("settings"),command=self.__handleEnable))
@@ -48,10 +49,20 @@ class Tools(Frame):
         packSide(Button(self,text = __("create Arduino"),command=self.__open_arduino_designer))
 
     def __open_arduino_designer(self):
-        tk = Tk()
-        ArduinoDesigner(tk)
-        tk.mainloop()
+        if self.__designer is not None:
+          self.__designer.lift()
+          self.__designer.focus()
+          return
+        self.__designer = Toplevel()
+        ArduinoDesigner(self.__designer)
+        self.__designer.protocol("WM_DELETE_WINDOW",self.__handle_close_designer)
+        self.__designer.mainloop()
         pass
+
+    def __handle_close_designer(self):
+      self.__designer.destroy()
+      self.__designer = None
+      pass
 
     def __handleEnable(self):
         if callable(self.__onEnable):
@@ -68,6 +79,7 @@ class Tools(Frame):
             self.__on_delete_from_group()
         pass
 
+    __designer:Tk = None
 
 
 
