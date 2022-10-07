@@ -27,6 +27,7 @@ class MainWindow(Frame):
     self.createUI()
     self.master = parent
     self.master.title("MBC Lux")
+    self.master.resizable(FALSE,FALSE)
     
  
 
