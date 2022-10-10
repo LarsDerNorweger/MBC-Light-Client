@@ -13,6 +13,8 @@ from UI.MainWindow.SaveInterface import SaveProfileInterface
 from  UI.MainWindow.ToolChain import Tools
 from UI.MainWindow.GroupSettingsInterface import GroupSettingsInterface
 
+from UI.SettingsManager.datamodell import Settings
+
 from UI.translation import setLanguage,__
 from UI.UiHelper import grid
 class MainWindow(Frame):
@@ -28,12 +30,13 @@ class MainWindow(Frame):
     self.master = parent
     self.master.title("MBC Lux")
     self.master.resizable(FALSE,FALSE)
+    self.master.report_callback_exception = self.__handle_Error
     
  
 
   def createUI(self):
-      setLanguage('de','./de.json')
-
+      setting = Settings("UI\Settings\settings.json")
+      setLanguage(setting.language.speech,'languages\\'+setting.language.path)
       self.Arduino = grid(ArduinoInterface(self, './UI/Settings/leonardo.json'),2,1,rowspan=2)
       self.Arduino.on_click = self.__add_pins_to_group
 
@@ -52,6 +55,11 @@ class MainWindow(Frame):
       self.ProfileManager.on_load = self.__load_Profile
 
       self.pack()
+
+  def __handle_Error(self,*args):
+    for i in args:
+      raise i
+    pass
  
   def __load_Profile(self,res):
     if self.Arduino.name != res['type']:

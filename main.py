@@ -7,14 +7,26 @@ from tkinter import Tk, messagebox
 
 from UI.MainWindow.master import MainWindow 
 from UI.translation import __
+from UI.SettingsManager.datamodell import Reload
 
-try:
-    master = Tk()
-    MainWindow(master)
-    master.mainloop()
-except Exception as e:
-    messagebox.showerror(__("An error occured"),e)
+reload = True
+master = None
+while reload:
+  try:
+      reload = False
+      master = Tk()
+      MainWindow(master)
+      master.mainloop()
+      pass
+  except Reload:
     master.destroy()
+    reload = True
+    pass
+  except Exception as e:
+      messagebox.showerror(__("An error occured"),e)
+      master.destroy()
+      pass
+  pass
 
 # def convertMessage(msg:str):
 #   return int(msg[0:len(msg)-2])

@@ -10,6 +10,7 @@ from tkinter import *
 from  UI.translation import __
 from UI.UiHelper import packSide
 from UI.ArduinoDesigner.master import ArduinoDesigner
+from UI.SettingsManager.master import SettingsManager
 
 class Tools(Frame):
 
@@ -43,10 +44,26 @@ class Tools(Frame):
          
 
     def createUI(self):
-        packSide(Button(self,text = __("settings"),command=self.__handleEnable))
+        packSide(Button(self,text = __("settings"),command=self.__open_settings))
         packSide(Button(self,text = __("select all"),command=self.__handleDisable))
         packSide(Button(self,text = __("delete from group"),command=self.__handleClear))
         packSide(Button(self,text = __("create Arduino"),command=self.__open_arduino_designer))
+
+    def __open_settings(self):
+      if self.__settings is not None:
+        self.__settings.lift()
+        self.__settings.focus()
+        return
+      self.__settings = Toplevel()
+      SettingsManager(self.__settings)
+      self.__settings.protocol("WM_DELETE_WINDOW",self.__handle_settings_close)
+      self.__settings.mainloop()
+      pass
+      
+    def __handle_settings_close(self):
+      self.__settings.destroy()
+      self.__settings = None
+      pass
 
     def __open_arduino_designer(self):
         if self.__designer is not None:
@@ -58,7 +75,7 @@ class Tools(Frame):
         self.__designer.protocol("WM_DELETE_WINDOW",self.__handle_close_designer)
         self.__designer.mainloop()
         pass
-
+        
     def __handle_close_designer(self):
       self.__designer.destroy()
       self.__designer = None
@@ -80,6 +97,7 @@ class Tools(Frame):
         pass
 
     __designer:Tk = None
+    __settings:Tk = None
 
 
 

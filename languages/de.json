@@ -1,8 +1,5 @@
 {
-    "add Group":"Gruppe Hinzufügen",
-    "enable pin": "Pin aktivieren",
     "select all": "Alle auswaehlen",
-    "choose pin!": "Pin auswählen",
     "delete from group":"von Gruppe entfernen",
     "An error occured":"Es trat ein Fehler auf",
     "group":"Gruppe",
@@ -12,5 +9,9 @@
     "failed to load file":"Fehler beim öffen der Datei",
     "failed to parse file":"Die Datei ist beschädigt",
     "settings":"Einstellung",
-    "create Arduino":"Arduino erstellen"
+    "create Arduino":"Arduino erstellen",
+    "Save profile":"Profil speichern",
+    "Load profile":"Profil laden",
+    "Save":"Speichern",
+    "Cancle":"Abbrechen"
 }

@@ -1,0 +1,17 @@
+{
+  "select all": "Tout selectionner",
+  "delete from group":"supprimer du groupe",
+  "An error occured":"Il y avait une erreur",
+  "group":"groupe",
+  "delay in sek":"Temps de commutation en secondes",
+  "name":"nom",
+  "Group settings":"paramètres de groupe",
+  "failed to load file":"Erreur lors de l'ouverture du fichier",
+  "failed to parse file":"Die Datei ist beschädigt",
+  "settings":"Einstellung",
+  "create Arduino":"Arduino erstellen",
+  "Save profile":"Profil speichern",
+  "Load profile":"Profil laden",
+  "Save":"Speichern",
+  "Cancle":"Abbrechen"
+}
