@@ -5,7 +5,7 @@ import time
 
 from tkinter import Tk, messagebox
 
-from UI.MainWindow.master import MainWindow 
+from UI.MainWindow.master import MainWindow
 from UI.translation import __
 from UI.SettingsManager.datamodell import Reload
 
