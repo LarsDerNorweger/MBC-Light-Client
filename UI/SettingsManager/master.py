@@ -5,11 +5,10 @@
 #
 
 from tkinter import *
-import json
 
 from UI.translation import __
-from UI.UiHelper import getPath
-from UI.SettingsManager.datamodell import Language, Settings,Reload
+from UI.UiHelper import getPath, grid
+from UI.SettingsManager.datamodell import Settings,Reload
 from UI.SettingsManager.LanguageSelectorInterface import LanguageSelector
 from UI.SettingsManager.ArduinoSelectionInterface import ArduinoSelectionInterface
 
@@ -18,26 +17,32 @@ class SettingsManager(Frame):
     def __init__(self,master:Tk):
         super().__init__(master)
         master.title(__("settings"))
-        self.change = False
+        self.onclose = None
+        self.master = master
+        master.report_callback_exception = self.__handle_error
         self.settings = Settings(getPath("./UI/Settings/settings.json"))
         self.create_UI()
         self.pack()
+        self.master.protocol("WM_DELETE_WINDOW",self.__on_cancle)
         
         pass
 
+    def __handle_error(self,esc,val,tb):
+      raise val
+
     def create_UI(self):
-      Label(self,text=__("settings")).pack()
-      self.__lang_select=LanguageSelector(self, self.settings)
-      self.__lang_select.pack()
+      grid(Label(self,text=__("settings"),font=(10)),0,0,columnspan=2)
+      self.__lang_select=grid(LanguageSelector(self, self.settings),1,0,columnspan=2)
 
-      self.__arduino_select = ArduinoSelectionInterface(self,self.settings)
-      self.__arduino_select.pack()
-      Button(self,text=__("Save"),command=self.__on_save).pack()
-      Button(self,text=__("Cancle"),command=lambda:self.master.destroy()).pack()
+      self.__arduino_select = grid(ArduinoSelectionInterface(self,self.settings),2,0,columnspan=2)
+      
+      grid(Button(self,text=__("Save"),command=self.__on_save),3,0)
+      grid(Button(self,text=__("Cancle"),command=self.__on_cancle),3,1)
       pass
-    def set_language(self):
-
-      pass
+    
+    def __on_cancle(self):
+        if callable(self.onclose):
+          self.onclose()
 
     def __on_save(self):
       self.settings.language = self.__lang_select.selected_lang
@@ -46,7 +51,6 @@ class SettingsManager(Frame):
       self.master.destroy()
       raise Reload()
 
-      pass
 
     __lang_select:LanguageSelector
  

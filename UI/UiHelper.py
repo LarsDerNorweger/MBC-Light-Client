@@ -45,5 +45,5 @@ def _from_rgb(rgb):
     """
     return "#%02x%02x%02x" % rgb 
 
-def getPath(path):
+def getPath(path)->str:
   return path

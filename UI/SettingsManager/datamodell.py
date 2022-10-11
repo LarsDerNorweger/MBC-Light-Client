@@ -47,11 +47,11 @@ class Settings:
     pass
 
   @property
-  def arduino(self):
+  def arduino(self)-> Arduino| None:
     return self.__arduino
 
   @arduino.setter
-  def arduino(self, value):
+  def arduino(self, value:Arduino):
     self.__arduino = value
     pass
 
@@ -70,7 +70,8 @@ class Settings:
       with open(self.__path) as fs:
         set = json.loads(" ".join(fs.readlines()))
         self.__language = Language(set["language"]["speech"], set["language"]["path"])
-        self.__arduino = Arduino(set["arduino"]["type"], set["arduino"]["pins"])
+        ard = Arduino(set["arduino"]["type"], set["arduino"]["pins"]) if set["arduino"] is not None else None
+        self.__arduino = ard
     except:
       self.save_settings()    
     pass

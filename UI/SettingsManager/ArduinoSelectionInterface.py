@@ -8,10 +8,11 @@ from tkinter import *
 from tkinter import ttk
 from UI.UiHelper import packSide
 from UI.translation import __
+from UI.UiHelper import getPath
 
 import json
 
-from UI.SettingsManager.datamodell import Arduino
+from UI.SettingsManager.datamodell import Arduino, Settings
 
 class ArduinoSelectionInterface(Frame):
 
@@ -20,14 +21,14 @@ class ArduinoSelectionInterface(Frame):
     ard = self.__selected_Arduino.get()
     return Arduino(ard, self.Arduinos[ard])
 
-  def __init__(self,master,settings):
+  def __init__(self,master,settings:Settings):
     super().__init__(master)
     if(settings.arduino):
       ard  = settings.arduino.typ
       self.__selected_Arduino = StringVar(self,ard)
     else: self.__selected_Arduino = StringVar(self)
 
-    self.Arduinos = ArduinoSelectionInterface.__get_arduinos("./UI/Settings/Arduinos.json")
+    self.Arduinos = ArduinoSelectionInterface.__get_arduinos(getPath("./UI/Settings/Arduinos.json"))
     self.createUI()
     pass
 

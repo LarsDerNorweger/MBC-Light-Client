@@ -54,15 +54,15 @@ class Tools(Frame):
         self.__settings.lift()
         self.__settings.focus()
         return
-      self.__settings = Toplevel()
-      SettingsManager(self.__settings)
-      self.__settings.protocol("WM_DELETE_WINDOW",self.__handle_settings_close)
+      self.__settings = Tk()
+      SettingsManager(self.__settings).onclose  = self.__handle_settings_close
       self.__settings.mainloop()
       pass
       
     def __handle_settings_close(self):
       self.__settings.destroy()
       self.__settings = None
+      self.lift()
       pass
 
     def __open_arduino_designer(self):
@@ -70,9 +70,8 @@ class Tools(Frame):
           self.__designer.lift()
           self.__designer.focus()
           return
-        self.__designer = Toplevel()
-        ArduinoDesigner(self.__designer)
-        self.__designer.protocol("WM_DELETE_WINDOW",self.__handle_close_designer)
+        self.__designer = Tk()
+        ArduinoDesigner(self.__designer).on_close = self.__handle_close_designer
         self.__designer.mainloop()
         pass
         

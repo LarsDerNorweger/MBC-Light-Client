@@ -30,7 +30,6 @@ def setLanguage(language:str,path:str= None)->None:
         messagebox.showerror("Language Error", f"The programm cant read the language Profile, the standart language is choosen")
 
 def __(key:str)->str:
-    print(Language.lang)
     if(Language.lang == 'english'):
         return key
 

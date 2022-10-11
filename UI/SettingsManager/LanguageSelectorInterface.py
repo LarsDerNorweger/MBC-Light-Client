@@ -30,7 +30,7 @@ class LanguageSelector(Frame):
     def __init__(self,master:Tk,settings):
         super().__init__(master)
         self.load_languages()
-        self.__selected_lang = StringVar(value=settings.language.speech)
+        self.__selected_lang = StringVar(self,value=settings.language.speech)
         self.create_UI()
         pass
 
