@@ -12,6 +12,17 @@ class Reload(Exception):
     super().__init__()
     pass
 
+class Arduino:
+  pins:int
+  typ:str
+  def __init__(self,type,pins):
+    self.pins = pins
+    self.typ = type
+
+  @property
+  def __dict__(self):
+    return{"pins":self.pins, "type":self.typ}
+
 
 class Language:
     speech:str
@@ -33,7 +44,15 @@ class Settings:
   @language.setter
   def language(self, value):
     self.__language = value
-    self.__save_settings()
+    pass
+
+  @property
+  def arduino(self):
+    return self.__arduino
+
+  @arduino.setter
+  def arduino(self, value):
+    self.__arduino = value
     pass
 
   def __init__(self,path:str):
@@ -41,7 +60,7 @@ class Settings:
     self.__load_settings()
     pass
 
-  def __save_settings(self):
+  def save_settings(self):
     with open(self.__path,"w+") as fs:
         fs.write(json.dumps(self.__dict__))
     pass
@@ -51,12 +70,15 @@ class Settings:
       with open(self.__path) as fs:
         set = json.loads(" ".join(fs.readlines()))
         self.__language = Language(set["language"]["speech"], set["language"]["path"])
+        self.__arduino = Arduino(set["arduino"]["type"], set["arduino"]["pins"])
     except:
-      self.__save_settings()    
+      self.save_settings()    
     pass
 
   @property
   def __dict__(self):
-    return {"language":self.__language.__dict__}
+    ard = self.arduino.__dict__ if self.arduino is not None else None
+    return {"language":self.__language.__dict__,"arduino":ard}
 
-  __language:Language = Language('englisch', '')
+  __language:Language = Language('english', '')
+  __arduino = None

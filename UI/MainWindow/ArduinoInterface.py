@@ -12,6 +12,8 @@ from UI.translation import __
 from UI.UiHelper import grid
 import json
 
+from UI.SettingsManager.datamodell import Arduino
+
 class ArduinoInterface(Frame):
 
   @property    
@@ -33,10 +35,13 @@ class ArduinoInterface(Frame):
         res.append(pin.pinNumber)
     return res
 
-  def __init__(self,parent:Frame,path:str):
+  def __init__(self,parent:Frame,arduino:Arduino):
     super().__init__(parent)
     self.Pins:List[PIN] = []
-    self.__load_arduino(path)
+    if arduino is None:
+      Label(self, text=__("No arduino loaded")).pack()
+      return
+    self.__load_arduino(arduino)
     self.__create_arduino()
     self.__onClick = None
     pass
@@ -54,15 +59,13 @@ class ArduinoInterface(Frame):
       pass
     pass
 
-  def __load_arduino(self,path:str):
+  def __load_arduino(self,arduino:Arduino):
     try:
-      with open(path) as fs:
-          res = json.loads(" ".join(fs.readlines()))
-          for i in res["pins"]:
-            p = PIN(i)
-            p.var = BooleanVar()
-            self.Pins.append(p)
-          self.__name = res["type"]
+      for i in arduino.pins:
+        p = PIN(i)
+        p.var = BooleanVar()
+        self.Pins.append(p)
+      self.__name = arduino.typ
       pass
     except EOFError:
       messagebox.showerror("Load Failed","Unable to Load Arduino Profile")

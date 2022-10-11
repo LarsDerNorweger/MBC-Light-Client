@@ -11,21 +11,27 @@ from UI.translation import __
 from UI.UiHelper import getPath
 from UI.SettingsManager.datamodell import Language, Settings,Reload
 from UI.SettingsManager.LanguageSelectorInterface import LanguageSelector
+from UI.SettingsManager.ArduinoSelectionInterface import ArduinoSelectionInterface
 
 
 class SettingsManager(Frame):
     def __init__(self,master:Tk):
         super().__init__(master)
         master.title(__("settings"))
+        self.change = False
         self.settings = Settings(getPath("./UI/Settings/settings.json"))
         self.create_UI()
         self.pack()
+        
         pass
 
     def create_UI(self):
       Label(self,text=__("settings")).pack()
       self.__lang_select=LanguageSelector(self, self.settings)
       self.__lang_select.pack()
+
+      self.__arduino_select = ArduinoSelectionInterface(self,self.settings)
+      self.__arduino_select.pack()
       Button(self,text=__("Save"),command=self.__on_save).pack()
       Button(self,text=__("Cancle"),command=lambda:self.master.destroy()).pack()
       pass
@@ -35,8 +41,11 @@ class SettingsManager(Frame):
 
     def __on_save(self):
       self.settings.language = self.__lang_select.selected_lang
+      self.settings.arduino = self.__arduino_select.selected_arduino
+      self.settings.save_settings()
       self.master.destroy()
       raise Reload()
+
       pass
 
     __lang_select:LanguageSelector

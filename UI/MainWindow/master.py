@@ -37,7 +37,7 @@ class MainWindow(Frame):
   def createUI(self):
       setting = Settings("UI\Settings\settings.json")
       setLanguage(setting.language.speech,'languages\\'+setting.language.path)
-      self.Arduino = grid(ArduinoInterface(self, './UI/Settings/leonardo.json'),2,1,rowspan=2)
+      self.Arduino = grid(ArduinoInterface(self, setting.arduino),2,1,rowspan=2)
       self.Arduino.on_click = self.__add_pins_to_group
 
       self.Tools = grid(Tools(self),1,1,3)
@@ -56,9 +56,8 @@ class MainWindow(Frame):
 
       self.pack()
 
-  def __handle_Error(self,*args):
-    for i in args:
-      raise i
+  def __handle_Error(self, esc, val,tb):
+    raise val
     pass
  
   def __load_Profile(self,res):

@@ -10,6 +10,10 @@ from tkinter import *
 from tkinter import ttk
 from UI.UiHelper import getPath
 
+from UI.UiHelper import packSide
+from UI.translation import __
+
+
 from UI.SettingsManager.datamodell import Language
 
 from UI.translation import __
@@ -31,14 +35,12 @@ class LanguageSelector(Frame):
         pass
 
     def create_UI(self):
-      cb = ttk.Combobox(self,textvariable=self.__selected_lang)
+      packSide(Label(self,text=__("language")+' :'))
+      cb = packSide(ttk.Combobox(self,textvariable=self.__selected_lang))
       keys = []
       for i in Chache.languages.keys():
         keys.append(i)
       cb["values"]=keys
-      cb.pack()
-      print(Chache.languages)
-
       pass
 
     def load_languages(self):
