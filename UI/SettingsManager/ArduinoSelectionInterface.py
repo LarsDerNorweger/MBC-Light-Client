@@ -4,11 +4,12 @@
 #   Authors: Colin Böttger 
 #
 
+from defines import DEFINES
+
 from tkinter import *
 from tkinter import ttk
 from UI.UiHelper import packSide
 from UI.translation import __
-from UI.UiHelper import getPath
 
 import json
 
@@ -28,7 +29,7 @@ class ArduinoSelectionInterface(Frame):
       self.__selected_Arduino = StringVar(self,ard)
     else: self.__selected_Arduino = StringVar(self)
 
-    self.Arduinos = ArduinoSelectionInterface.__get_arduinos(getPath("./UI/Settings/Arduinos.json"))
+    self.Arduinos = ArduinoSelectionInterface.__get_arduinos(DEFINES.ARDUINO_PATH)
     self.createUI()
     pass
 

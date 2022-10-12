@@ -8,7 +8,7 @@ import json
 
 from tkinter import *
 from tkinter import ttk
-from UI.UiHelper import getPath
+from defines import DEFINES
 
 from UI.UiHelper import packSide
 from UI.translation import __
@@ -47,7 +47,7 @@ class LanguageSelector(Frame):
       if Chache.languages is not None:
         return
       try:
-        with open(getPath("languages/support.json")) as fs:
+        with open(DEFINES.LANGUAGE_SUPPORT) as fs:
           Chache.languages = json.loads("".join(fs.readlines()))
           Chache.languages["english"]=''
         pass

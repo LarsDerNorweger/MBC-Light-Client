@@ -7,18 +7,15 @@
 from tkinter import *
 
 from UI.translation import __
+from UI.SettingsManager.datamodell import Arduino
 
 from UI.UiHelper import grid
 
 class ArduinoInput(Frame):
     
     @property
-    def pins(self):
-        return ArduinoInput.__parse_input_to_Lists(self.__pin_input.get())
-
-    @property
-    def name(self):
-        return self.__name_input.get()
+    def arduino(self)->Arduino:
+        return Arduino(self.__name_input.get(),ArduinoInput.__parse_input_to_Lists(self.__pin_input.get()))
 
     def __init__(self,master:Frame):
         super().__init__(master)
@@ -38,6 +35,9 @@ class ArduinoInput(Frame):
     @staticmethod
     def __parse_input_to_Lists(inp:str):
         res = []
+        if inp == '':
+          return res
+
         parse = inp.split(',')
         for st in parse:
             if st.__contains__('-'):

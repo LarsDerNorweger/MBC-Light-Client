@@ -5,7 +5,6 @@
 #
 
 import json
-from UI.UiHelper import getPath
 
 class Reload(Exception):
   def __init__(self):

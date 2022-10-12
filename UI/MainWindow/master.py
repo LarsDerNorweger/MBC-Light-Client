@@ -7,6 +7,8 @@
 from tkinter import *
 from tkinter import messagebox
 
+from defines import DEFINES
+
 from  UI.MainWindow.ArduinoInterface import ArduinoInterface
 from  UI.MainWindow.GroupManager import Group, GroupsInterface
 from UI.MainWindow.SaveInterface import SaveProfileInterface
@@ -35,7 +37,7 @@ class MainWindow(Frame):
  
 
   def createUI(self):
-      setting = Settings("UI\Settings\settings.json")
+      setting = Settings(DEFINES.SETTINGS)
       setLanguage(setting.language.speech,'languages\\'+setting.language.path)
       self.Arduino = grid(ArduinoInterface(self, setting.arduino),2,1,rowspan=2)
       self.Arduino.on_click = self.__add_pins_to_group

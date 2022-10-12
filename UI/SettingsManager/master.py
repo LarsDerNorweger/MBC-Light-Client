@@ -7,7 +7,8 @@
 from tkinter import *
 
 from UI.translation import __
-from UI.UiHelper import getPath, grid
+from UI.UiHelper import grid
+from defines import DEFINES
 from UI.SettingsManager.datamodell import Settings,Reload
 from UI.SettingsManager.LanguageSelectorInterface import LanguageSelector
 from UI.SettingsManager.ArduinoSelectionInterface import ArduinoSelectionInterface
@@ -20,7 +21,7 @@ class SettingsManager(Frame):
         self.onclose = None
         self.master = master
         master.report_callback_exception = self.__handle_error
-        self.settings = Settings(getPath("./UI/Settings/settings.json"))
+        self.settings = Settings(DEFINES.SETTINGS)
         self.create_UI()
         self.pack()
         self.master.protocol("WM_DELETE_WINDOW",self.__on_cancle)
