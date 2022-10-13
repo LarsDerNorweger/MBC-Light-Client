@@ -7,6 +7,6 @@
 from UI.UiHelper import getPath
 
 class DEFINES:
-  ARDUINO_PATH = getPath("./UI/Settings/Arduinos.json")
+  ARDUINO_PATH = getPath("./Settings/Arduinos.json")
   LANGUAGE_SUPPORT = getPath("languages/support.json")
-  SETTINGS = getPath("./UI/Settings/settings.json")
+  SETTINGS = getPath("./Settings/settings.json")
