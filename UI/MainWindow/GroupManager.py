@@ -7,19 +7,10 @@
 
 from tkinter import *
 
+from datamodell import Group
 from UI.UiHelper import WebsaveColorGenerator,packDown
 from UI.translation import __
 
-class Group:
-  name:str
-  Pins = []
-  btn:Radiobutton
-  color:str
-  delay:int = None
-
-  @property 
-  def __dict__(self):
-    return {"name":self.name,"pins":self.Pins, "delay":str(self.delay).replace(',','.')}
 
 
 class GroupsInterface(Frame):
@@ -34,7 +25,6 @@ class GroupsInterface(Frame):
   def selected_group(self)-> Group:
     return self.groups[self.ed.get()]
 
-
   def __init__(self,master,GroupCount):
     super().__init__(master)
     self.__on_click = None
@@ -42,7 +32,6 @@ class GroupsInterface(Frame):
     self.reset_groups()
     self.ed = IntVar()
     self.__generateGroup(GroupCount)
-
 
   def __handle_click(self):
     if callable(self.__on_click):
@@ -76,10 +65,4 @@ class GroupsInterface(Frame):
   def update(self) -> None:
     for i in self.groups:
       i.btn.config(text=i.name)
-      
     return super().update()
-
-
-
-
-

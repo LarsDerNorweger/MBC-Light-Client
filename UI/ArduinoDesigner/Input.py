@@ -6,10 +6,9 @@
 
 from tkinter import *
 
-from UI.translation import __
 from datamodell import Arduino
-
 from UI.UiHelper import grid
+from UI.translation import __
 
 class ArduinoInput(Frame):
     
@@ -25,19 +24,15 @@ class ArduinoInput(Frame):
     def createUI(self):
         grid(Label(self,text=__("name")),0,1)
         self.__name_input = grid(Entry(self),0,2)
-
         grid(Label(self,text=__("pins")),1,1)
         self.__pin_input = grid(Entry(self),1,2)
-
-
         pass
 
     @staticmethod
     def __parse_input_to_Lists(inp:str):
-        res = []
         if inp == '':
-          return res
-
+          return []
+        res = []
         parse = inp.split(',')
         for st in parse:
             if st.__contains__('-'):
@@ -46,11 +41,4 @@ class ArduinoInput(Frame):
             else: res.append(int(st))
             pass
         res.sort()
-        return res
-
-    @staticmethod
-    def __generat_partial_List(start:int, stop :int):
-        res = []
-        for i in range(start,stop):
-            res.append(i)
         return res

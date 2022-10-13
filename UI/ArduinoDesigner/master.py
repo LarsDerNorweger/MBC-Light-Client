@@ -4,16 +4,15 @@
 #   Authors: Colin Böttger 
 #
 
-from defines import DEFINES
-
 import json
 
 from tkinter import *
 from tkinter import messagebox
-from datamodell import Reload
 
-from UI.translation import __
+from datamodell import Reload
+from defines import DEFINES
 from UI.UiHelper import grid
+from UI.translation import __
 from UI.ArduinoDesigner.Input import ArduinoInput
 
 class ArduinoDesigner(Frame):
@@ -21,12 +20,14 @@ class ArduinoDesigner(Frame):
         super().__init__(master)
         self.load_arduinos()
         self.on_close = None
-        master.protocol("WM_DELETE_WINDOW", self.__handle_close)
+        
         self.master = master
+        self.master.report_callback_exception = self.handleError
         self.master.title(__("create Arduino"))
+        self.master.protocol("WM_DELETE_WINDOW", self.__handle_close)
+        
         self.createUI()
         self.pack()
-        master.report_callback_exception = self.handleError
         pass
 
     def handleError(self,exc, val, tb):
@@ -50,11 +51,12 @@ class ArduinoDesigner(Frame):
           self.Arduinos[ard.typ] = ard.pins
           self.save_arduinos()
           raise Reload
-        return
+        pass
 
     def __handle_close(self):
         if callable(self.on_close):
             self.on_close()
+        pass
 
     def check_override(self,key):
       if not self.Arduinos.__contains__(key):
@@ -86,9 +88,3 @@ class ArduinoDesigner(Frame):
         messagebox.showerror(__("an error occured"),e)
         pass
       pass
-      pass
-
-
-
-    
-    

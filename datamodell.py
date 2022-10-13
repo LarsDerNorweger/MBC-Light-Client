@@ -6,10 +6,23 @@
 
 import json
 
+from tkinter import *
+
 class Reload(Exception):
   def __init__(self):
     super().__init__()
     pass
+
+class Group:
+  name:str
+  Pins = []
+  btn:Radiobutton
+  color:str
+  delay:int = None
+
+  @property 
+  def __dict__(self):
+    return {"name":self.name,"pins":self.Pins, "delay":str(self.delay).replace(',','.')}
 
 class Arduino:
   pins:int

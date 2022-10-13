@@ -6,9 +6,9 @@
 
 from tkinter import *
 
-from UI.MainWindow.GroupManager import Group
-from UI.translation import __
+from datamodell import Group
 from UI.UiHelper import grid
+from UI.translation import __
 
 class GroupSettingsInterface(Frame):
     @property
@@ -21,10 +21,10 @@ class GroupSettingsInterface(Frame):
             self.__displayed_group.name = self.__name.get()
             d = float(self.__delay.get().replace(',','.') )
             self.__displayed_group.delay = d if d>0 else None
+        
         self.__displayed_group = value
         self.__name.delete(0,END)
         self.__name.insert(0,value.name)
-
         self.__delay.delete(0,END)
         self.__delay.insert(0,str(value.delay if value.delay else 0))
 

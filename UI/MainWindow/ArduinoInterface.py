@@ -4,15 +4,15 @@
 #   Authors: Colin Böttger 
 #
 
+import json
+
 from tkinter import *
 from tkinter import messagebox
 from typing import List
-from UI.MainWindow.GroupManager import Group
-from UI.translation import __
-from UI.UiHelper import grid
-import json
 
-from datamodell import Arduino
+from datamodell import Arduino,Group
+from UI.UiHelper import grid
+from UI.translation import __
 
 class ArduinoInterface(Frame):
 
@@ -37,13 +37,13 @@ class ArduinoInterface(Frame):
 
   def __init__(self,parent:Frame,arduino:Arduino):
     super().__init__(parent)
+    self.__onClick = None
     self.Pins:List[PIN] = []
     if arduino is None:
       Label(self, text=__("No arduino loaded")).pack()
       return
     self.__load_arduino(arduino)
     self.__create_arduino()
-    self.__onClick = None
     pass
 
   def __handle_click(self):
@@ -68,7 +68,7 @@ class ArduinoInterface(Frame):
       self.__name = arduino.typ
       pass
     except EOFError:
-      messagebox.showerror("Load Failed","Unable to Load Arduino Profile")
+      messagebox.showerror(__("an error occured"),__("Unable to Load Arduino Profile"))
       pass
     pass
 

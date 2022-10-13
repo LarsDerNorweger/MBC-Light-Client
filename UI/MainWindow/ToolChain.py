@@ -4,10 +4,9 @@
 #   Authors: Colin Böttger 
 #
 
-from ctypes import alignment
-from signal import raise_signal
 from tkinter import *
-from  UI.translation import __
+
+from UI.translation import __
 from UI.UiHelper import packSide
 from UI.ArduinoDesigner.master import ArduinoDesigner
 from UI.SettingsManager.master import SettingsManager

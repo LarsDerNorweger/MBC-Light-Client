@@ -9,8 +9,9 @@ from tkinter import messagebox
 
 from defines import DEFINES
 
+from datamodell import Group
 from  UI.MainWindow.ArduinoInterface import ArduinoInterface
-from  UI.MainWindow.GroupManager import Group, GroupsInterface
+from  UI.MainWindow.GroupManager import GroupsInterface
 from UI.MainWindow.SaveInterface import SaveProfileInterface
 from  UI.MainWindow.ToolChain import Tools
 from UI.MainWindow.GroupSettingsInterface import GroupSettingsInterface

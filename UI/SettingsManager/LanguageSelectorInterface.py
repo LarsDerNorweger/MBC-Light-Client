@@ -8,18 +8,15 @@ import json
 
 from tkinter import *
 from tkinter import ttk
-from defines import DEFINES
 
+from datamodell import Language
+from defines import DEFINES
 from UI.UiHelper import packSide
 from UI.translation import __
 
-
-from datamodell import Language
-
-from UI.translation import __
 class Chache():
   languages = None
-
+  pass
 
 class LanguageSelector(Frame):
     @property

@@ -4,16 +4,15 @@
 #   Authors: Colin Böttger 
 #
 
-from defines import DEFINES
+import json
 
 from tkinter import *
 from tkinter import ttk
-from UI.UiHelper import packSide
-from UI.translation import __
-
-import json
 
 from datamodell import Arduino, Settings
+from defines import DEFINES
+from UI.UiHelper import packSide
+from UI.translation import __
 
 class ArduinoSelectionInterface(Frame):
 

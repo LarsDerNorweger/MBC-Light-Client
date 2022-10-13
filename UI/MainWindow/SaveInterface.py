@@ -4,24 +4,23 @@
 #   Authors: Colin Böttger 
 #
 
-from concurrent.futures import thread
+import json
 import pathlib
+
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
 
-import json
-from UI.MainWindow.GroupManager import Group
-
+from datamodell import Group
 from UI.UiHelper import packSide
 from UI.translation import __
-
 
 FILETYPE =     (
         ('lux files', '*.lux'),
         ('All files', '*.*')
     )
 HOME = str(pathlib.Path.home())
+
 class SaveProfileInterface(Frame):
 
     @property
@@ -55,43 +54,22 @@ class SaveProfileInterface(Frame):
         filename = filedialog.asksaveasfilename(title=__("Save Path"), initialdir=HOME,defaultextension='lux',initialfile="mbcLightConfig")
         if(filename == ''):
             return
-        save = None
-
+        
+        profile = None
         if callable(self.__on_save):
-            save = self.__on_save()
-
-        if not save:
+            profile = self.__on_save()
+        if profile is None:
             raise Exception(__("no handler installed"))
-
-        try:
-            with open(filename,"+w") as fs:
-                fs.write(encoder().encode(save))
-                pass    
-            pass
-        except EOFError:
-            messagebox.showerror(__("An error occured"),__("failed to load file")+' '+filename)
-            pass
-        except json.JSONDecodeError:
-            messagebox.showerror(__("An error occured"),__("failed to parse file")+' '+filename)
-            pass
+        save_profile(filename, profile)
         pass
 
     def __handle_load(self):
         filename = filedialog.askopenfilename(title=__("Save Path"),initialdir=HOME,filetypes=FILETYPE)
         if filename == '':
             return
-        try:
-            with open(filename) as fs:
-                res = json.loads(''.join(fs.readlines()))
-                pass    
-            pass
-        except EOFError:
-            messagebox.showerror(__("An error occured"),__("failed to load file")+' '+filename)
-            pass
-        except json.JSONDecodeError:
-            messagebox.showerror(__("An error occured"),__("failed to parse file")+' '+filename)
-            pass
-        if callable(self.__on_load):
+
+        res  = load_profile(filename)
+        if callable(self.__on_load) and res is not None :
             self.__on_load(res)
         pass
 
@@ -100,3 +78,32 @@ class encoder(json.JSONEncoder):
         if isinstance(o,Group):
             return o.__dict__
         return super().default(o)
+
+def save_profile(path:str, profile):
+    try:
+        with open(path,"+w") as fs:
+            fs.write(encoder().encode(profile))
+            pass    
+        pass
+    except EOFError:
+        messagebox.showerror(__("An error occured"),__("failed to load file")+' '+path)
+        pass
+    except json.JSONDecodeError:
+        messagebox.showerror(__("An error occured"),__("failed to parse file")+' '+path)
+        pass
+    pass
+
+def load_profile(path:str):
+    res = None
+    try:
+        with open(path) as fs:
+            res = json.loads(''.join(fs.readlines()))
+            pass    
+        pass
+    except EOFError:
+        messagebox.showerror(__("An error occured"),__("failed to load file")+' '+path)
+        pass
+    except json.JSONDecodeError:
+        messagebox.showerror(__("An error occured"),__("failed to parse file")+' '+path)
+        pass
+    return res

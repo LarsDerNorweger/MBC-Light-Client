@@ -6,13 +6,12 @@
 
 from tkinter import *
 
-from UI.translation import __
-from UI.UiHelper import grid
-from defines import DEFINES
 from datamodell import Settings,Reload
+from defines import DEFINES
+from UI.UiHelper import grid
+from UI.translation import __
 from UI.SettingsManager.LanguageSelectorInterface import LanguageSelector
 from UI.SettingsManager.ArduinoSelectionInterface import ArduinoSelectionInterface
-
 
 class SettingsManager(Frame):
     def __init__(self,master:Tk):
@@ -25,7 +24,6 @@ class SettingsManager(Frame):
         self.create_UI()
         self.pack()
         self.master.protocol("WM_DELETE_WINDOW",self.__on_cancle)
-        
         pass
 
     def __handle_error(self,esc,val,tb):
