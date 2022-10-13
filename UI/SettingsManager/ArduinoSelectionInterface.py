@@ -13,7 +13,7 @@ from UI.translation import __
 
 import json
 
-from UI.SettingsManager.datamodell import Arduino, Settings
+from datamodell import Arduino, Settings
 
 class ArduinoSelectionInterface(Frame):
 

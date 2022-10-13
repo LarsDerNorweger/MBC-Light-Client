@@ -14,7 +14,7 @@ from UI.UiHelper import packSide
 from UI.translation import __
 
 
-from UI.SettingsManager.datamodell import Language
+from datamodell import Language
 
 from UI.translation import __
 class Chache():

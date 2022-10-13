@@ -15,7 +15,7 @@ from UI.MainWindow.SaveInterface import SaveProfileInterface
 from  UI.MainWindow.ToolChain import Tools
 from UI.MainWindow.GroupSettingsInterface import GroupSettingsInterface
 
-from UI.SettingsManager.datamodell import Settings
+from datamodell import Settings
 
 from UI.translation import setLanguage,__
 from UI.UiHelper import grid

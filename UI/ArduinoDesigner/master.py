@@ -10,7 +10,7 @@ import json
 
 from tkinter import *
 from tkinter import messagebox
-from UI.SettingsManager.datamodell import Reload
+from datamodell import Reload
 
 from UI.translation import __
 from UI.UiHelper import grid
@@ -45,7 +45,7 @@ class ArduinoDesigner(Frame):
             self.on_close()
         if(ard.typ == ""):
           return
-          
+
         if self.check_override(ard.typ):
           self.Arduinos[ard.typ] = ard.pins
           self.save_arduinos()

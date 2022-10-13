@@ -12,7 +12,7 @@ from UI.translation import __
 from UI.UiHelper import grid
 import json
 
-from UI.SettingsManager.datamodell import Arduino
+from datamodell import Arduino
 
 class ArduinoInterface(Frame):
 

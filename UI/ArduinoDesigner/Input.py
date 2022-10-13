@@ -7,7 +7,7 @@
 from tkinter import *
 
 from UI.translation import __
-from UI.SettingsManager.datamodell import Arduino
+from datamodell import Arduino
 
 from UI.UiHelper import grid
 

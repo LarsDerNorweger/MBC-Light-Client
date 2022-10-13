@@ -9,7 +9,7 @@ from tkinter import *
 from UI.translation import __
 from UI.UiHelper import grid
 from defines import DEFINES
-from UI.SettingsManager.datamodell import Settings,Reload
+from datamodell import Settings,Reload
 from UI.SettingsManager.LanguageSelectorInterface import LanguageSelector
 from UI.SettingsManager.ArduinoSelectionInterface import ArduinoSelectionInterface
 
