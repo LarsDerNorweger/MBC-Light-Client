@@ -15,19 +15,26 @@ class SerialManager:
     lock: threading.Lock
 
     def __init__(self, port: str, onMessage=None):
-        self.onMessage = onMessage
+        if onMessage is not None:
+            self.onMessage = onMessage
+        self.__serial = None
         self.__port = port
         self.__thread = threading.Thread(target=self.__CheckForEvents)
         self.lock = threading._allocate_lock()
         pass
 
-    def sendLine(self, msg):
+    def send(self, msg):
         if self.__serial == None:
             raise Exception("Serialkommunkation not started")
-
+        self.__serial.write(msg)
         print(f"out    => {msg}")
-        self.__serial.write(bytes(msg, 'utf8'))
-        self.__serial.write(bytes('\n', 'utf8'))
+
+        pass
+
+    def sendLine(self, msg):
+        self.__serial.write(bytes(msg, "utf8"))
+        self.__serial.write(bytes("\n", "utf8"))
+        print(f"out    => {msg}")
 
     def start(self):
         self.__serial = serial.Serial(self.__port, baudrate=115200)
@@ -51,12 +58,12 @@ class SerialManager:
     def __CheckForEvents(self):
         while True:
             self.lock.acquire()
-            if(self.__stop):
+            if (self.__stop):
                 break
             self.lock.release()
 
-            data = self.__serial.readline()
-            if(data != ''):
+            data = self.__serial.read_all()
+            if (data != bytes('', "utf8")):
                 print(f"income <= {data}")
                 self.__handleMessage(self, data)
 
