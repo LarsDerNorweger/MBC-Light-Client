@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wbk8FhAIsXv4dQJfrwIcHPgSQsg5GpDdCODWSOqqYNdNnD4dqEbEicbWi2r/QHV3jeoMzmPJOxqX65mRnKRf5g==",
+  "dgSpecHash": "Y1f+12ePRFfgFCjecnExrp7IYz4dSMrvCPpkoR32Up7S2v+juAPtKjBdsDvMTXGnJTM2nL5BkLO/6jvu/jADAg==",
   "success": true,
-  "projectFilePath": "/home/colin/Dev/Mbc_Zwickau/MBC-Light-Client/MBC.csproj",
+  "projectFilePath": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

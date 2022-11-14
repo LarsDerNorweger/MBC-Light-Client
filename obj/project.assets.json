@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/colin/Dev/Mbc_Zwickau/MBC-Light-Client/MBC.csproj",
+      "projectUniqueName": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
       "projectName": "MBC",
-      "projectPath": "/home/colin/Dev/Mbc_Zwickau/MBC-Light-Client/MBC.csproj",
+      "projectPath": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
       "packagesPath": "/home/colin/.nuget/packages/",
-      "outputPath": "/home/colin/Dev/Mbc_Zwickau/MBC-Light-Client/obj/",
+      "outputPath": "/home/colin/Dev/MBC-Light-Client/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/colin/.nuget/NuGet/NuGet.Config"
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/dotnet6-6.0.110/sdk/6.0.110/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.110/RuntimeIdentifierGraph.json"
       }
     }
   }
