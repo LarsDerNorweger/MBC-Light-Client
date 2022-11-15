@@ -1,8 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "Y1f+12ePRFfgFCjecnExrp7IYz4dSMrvCPpkoR32Up7S2v+juAPtKjBdsDvMTXGnJTM2nL5BkLO/6jvu/jADAg==",
+  "dgSpecHash": "K8YPTKf9eznHIkjRtosSKwPDnFvF33Czos+gduoDpO7spBRgUwiScEMHQO01G0lvsn6zpuOumOvtOCI6r5VMyQ==",
   "success": true,
-  "projectFilePath": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Privat\\MBC\\MBC-Light-Client\\MBC.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\7.0.0\\runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.native.system.io.ports\\7.0.0\\runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\7.0.0\\runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "C:\\Users\\c.boettger\\.nuget\\packages\\system.io.ports\\7.0.0\\system.io.ports.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

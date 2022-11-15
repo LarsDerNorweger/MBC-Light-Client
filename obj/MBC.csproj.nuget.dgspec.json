@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/home/colin/Dev/MBC-Light-Client/MBC.csproj": {}
+    "D:\\Privat\\MBC\\MBC-Light-Client\\MBC.csproj": {}
   },
   "projects": {
-    "/home/colin/Dev/MBC-Light-Client/MBC.csproj": {
+    "D:\\Privat\\MBC\\MBC-Light-Client\\MBC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
+        "projectUniqueName": "D:\\Privat\\MBC\\MBC-Light-Client\\MBC.csproj",
         "projectName": "MBC",
-        "projectPath": "/home/colin/Dev/MBC-Light-Client/MBC.csproj",
-        "packagesPath": "/home/colin/.nuget/packages/",
-        "outputPath": "/home/colin/Dev/MBC-Light-Client/obj/",
+        "projectPath": "D:\\Privat\\MBC\\MBC-Light-Client\\MBC.csproj",
+        "packagesPath": "C:\\Users\\c.boettger\\.nuget\\packages\\",
+        "outputPath": "D:\\Privat\\MBC\\MBC-Light-Client\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/colin/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\c.boettger\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,13 +43,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "System.IO.Ports": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -52,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.110/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
